@@ -1,215 +1,179 @@
-# Operational Procedures
+# Grafana
 
 ## Overview
 
-This document outlines the standard operational procedures used to manage and maintain the infrastructure environment.
+Grafana is the primary visualization platform used within the monitoring environment.
 
-The purpose of these procedures is to establish consistency, improve system reliability, support troubleshooting efforts, and promote documentation best practices.
-
----
-
-## Daily Operations
-
-### Infrastructure Health Review
-
-Perform a daily review of infrastructure services to verify operational status.
-
-#### Verification Tasks
-
-* Review monitoring dashboards
-* Confirm service availability
-* Check server resource utilization
-* Verify monitoring data collection
-* Review system alerts and notifications
-
-#### Expected Outcome
-
-All production and monitoring services are operating normally.
+The platform provides dashboards that display infrastructure metrics collected by Prometheus and Node Exporter, allowing administrators to monitor system performance, resource utilization, and service availability from a centralized interface.
 
 ---
 
-### Ticket Platform Verification
+## Platform Information
 
-Verify that support services remain accessible and operational.
-
-#### Verification Tasks
-
-* Confirm website accessibility
-* Verify ticket submission functionality
-* Review recent ticket activity
-* Confirm email notification delivery
-
-#### Expected Outcome
-
-Users can access support resources and submit tickets successfully.
+| Item           | Value                 |
+| -------------- | --------------------- |
+| Software       | Grafana               |
+| Version        | 10.2.6                |
+| Classification | Monitoring Platform   |
+| Environment    | Production Monitoring |
+| Status         | Active                |
 
 ---
 
-## Weekly Operations
+## Purpose
 
-### Software Review
+Grafana provides visibility into infrastructure performance by transforming collected metrics into dashboards and visual reports.
 
-Review installed software and service versions.
-
-#### Verification Tasks
-
-* Review installed software inventory
-* Identify available updates
-* Review release notes when applicable
-* Update documentation following approved changes
-
-#### Expected Outcome
-
-Software inventory remains accurate and current.
+The platform supports proactive monitoring, troubleshooting, capacity planning, and operational awareness.
 
 ---
 
-### Documentation Review
+## Monitoring Architecture
 
-Review infrastructure documentation for accuracy.
+```text
+Node Exporter
+      │
+      ▼
+Prometheus
+      │
+      ▼
+Grafana
+      │
+      ▼
+Dashboards & Visualizations
+```
 
-#### Verification Tasks
+### Components
 
-* Validate inventory records
-* Review service documentation
-* Confirm DNS inventory accuracy
-* Update change log entries
+**Node Exporter**
 
-#### Expected Outcome
+Collects operating system metrics from monitored Linux systems.
 
-Documentation reflects the current environment.
+**Prometheus**
+
+Stores and manages collected metric data.
+
+**Grafana**
+
+Visualizes collected metrics through dashboards and reporting tools.
 
 ---
 
-## Monitoring Operations
+## Monitored Resources
 
-### Dashboard Review
+The monitoring environment tracks:
 
-Monitoring dashboards should be reviewed regularly to identify trends and potential issues.
+* CPU Utilization
+* Memory Utilization
+* Disk Utilization
+* Network Activity
+* System Load
+* System Uptime
+* Service Availability
 
-#### Review Areas
+---
 
-* CPU utilization
-* Memory utilization
-* Disk utilization
-* Network activity
-* System uptime
+## Dashboard Functions
+
+### Infrastructure Monitoring
+
+Provides visibility into the health and performance of monitored systems.
+
+### Resource Utilization
+
+Tracks resource consumption trends including:
+
+* CPU usage
+* Memory usage
+* Disk usage
+* Network throughput
+
+### Availability Monitoring
+
+Assists in identifying:
+
+* Service interruptions
+* Monitoring failures
+* Resource exhaustion
+* Infrastructure anomalies
+
+---
+
+## Monitoring Validation
+
+Monitoring functionality has been validated through controlled testing.
+
+### Validation Method
+
+Node Exporter was intentionally stopped on a monitored system.
+
+### Expected Result
+
+Grafana reported missing metrics and loss of service visibility.
+
+### Recovery Validation
+
+After restarting Node Exporter:
+
+* Metric collection resumed
+* Dashboards updated normally
+* Monitoring visibility was restored
+
+### Outcome
+
+Monitoring platform successfully detected both service interruption and recovery events.
+
+---
+
+## Operational Benefits
+
+### Centralized Visibility
+
+Provides a single location for infrastructure monitoring.
+
+### Troubleshooting Support
+
+Assists with identifying performance bottlenecks and service issues.
+
+### Historical Analysis
+
+Supports review of performance trends over time.
+
+### Capacity Planning
+
+Provides insight into future infrastructure requirements.
+
+---
+
+## Monitoring Procedures
+
+### Daily Review
+
+Review dashboard metrics to verify:
+
+* System health
 * Service availability
+* Resource utilization
+* Monitoring functionality
 
-#### Expected Outcome
+### Weekly Review
 
-Potential issues are identified before they impact services.
+Review trends and identify:
 
----
-
-### Monitoring Validation
-
-Periodically validate monitoring functionality.
-
-#### Validation Tasks
-
-* Confirm metrics are being collected
-* Verify dashboard updates
-* Confirm monitoring targets remain reachable
-* Verify alerting functionality when configured
-
-#### Expected Outcome
-
-Monitoring systems accurately reflect infrastructure status.
+* Performance anomalies
+* Capacity concerns
+* Infrastructure changes
 
 ---
 
-## Change Management
+## Documentation References
 
-### Change Documentation
+Related Documentation:
 
-Infrastructure changes should be documented before or immediately after implementation.
-
-#### Examples
-
-* Software upgrades
-* Service deployments
-* Monitoring enhancements
-* DNS modifications
-* Documentation updates
-
-#### Documentation Requirements
-
-* Date of change
-* Description of change
-* Systems affected
-* Outcome of implementation
-
-#### Expected Outcome
-
-A complete historical record of infrastructure changes is maintained.
-
----
-
-## Inventory Management
-
-### Hardware Inventory Maintenance
-
-Inventory records should be reviewed whenever infrastructure resources are added, removed, or modified.
-
-#### Review Areas
-
-* Server resources
-* Infrastructure assets
-* Resource allocation
-
----
-
-### Software Inventory Maintenance
-
-Software inventory records should be updated following:
-
-* New installations
-* Upgrades
-* Service removals
-* Version changes
-
----
-
-### Service Inventory Maintenance
-
-Service documentation should be updated whenever:
-
-* New services are deployed
-* Existing services are modified
-* Services are retired
-
----
-
-## Security Practices
-
-The following information should not be stored in public documentation repositories:
-
-* Passwords
-* API keys
-* Access tokens
-* Webhook URLs
-* Private certificates
-* Internal IP addresses
-* Server hostnames
-* Recovery codes
-* Account credentials
-
-Sensitive operational information should be maintained separately from public documentation.
-
----
-
-## Continuous Improvement
-
-Operational procedures should be reviewed regularly and updated as infrastructure requirements evolve.
-
-Areas for improvement may include:
-
-* Automation
-* Monitoring enhancements
-* Documentation standards
-* Operational workflows
-* Service reliability
+* Monitoring/Prometheus.md
+* Assets/Service-Inventory.md
+* Assets/Software-Inventory.md
+* Documentation/Operational-Procedures.md
 
 ---
 
@@ -220,4 +184,3 @@ Last Updated: June 2026
 Maintained By: Jose Rojas
 
 Repository: Infrastructure-Inventory
-
